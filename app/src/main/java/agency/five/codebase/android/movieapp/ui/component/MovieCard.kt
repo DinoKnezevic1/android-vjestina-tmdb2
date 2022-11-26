@@ -12,6 +12,7 @@ import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,6 +42,7 @@ fun MovieCard(
             AsyncImage(
                 model = movieCardViewState.imageUrl,
                 contentDescription = "actor image",
+                contentScale = ContentScale.FillWidth
             )
             FavoriteButton(
                 isFavorite = movieCardViewState.isFavorite,
