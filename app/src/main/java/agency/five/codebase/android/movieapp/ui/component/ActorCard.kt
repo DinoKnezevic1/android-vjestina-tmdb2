@@ -1,8 +1,11 @@
 package agency.five.codebase.android.movieapp.ui.component
 import agency.five.codebase.android.movieapp.mock.MoviesMock
+import agency.five.codebase.android.movieapp.ui.theme.GrayText
+import agency.five.codebase.android.movieapp.ui.theme.spacing
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,7 +31,6 @@ fun ActorCard (
 ) {
     Card {
         Column(
-
             modifier = modifier
                 .wrapContentSize(),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -51,14 +53,14 @@ fun ActorCard (
             Text(
                 text = actorCardViewState.character,
                 fontSize = 13.sp,
-                color = Color(0xFF828282),
+                color = GrayText,
                 modifier = modifier
                     .width(100.dp)
             )
         }
         Spacer(
             modifier = Modifier
-                .size(5.dp)
+                .size(MaterialTheme.spacing.extraSmall)
         )
     }
 }
@@ -67,6 +69,10 @@ fun ActorCard (
 @Composable
 private fun ActorCardPreview(){
     val actor = MoviesMock.getActor()
-    val actorCardViewState=ActorCardViewState(actor.imageUrl.toString(),actor.name,actor.character)
+    val actorCardViewState=ActorCardViewState(
+        actor.imageUrl.toString(),
+        actor.name,
+        actor.character
+    )
     ActorCard(actorCardViewState)
 }

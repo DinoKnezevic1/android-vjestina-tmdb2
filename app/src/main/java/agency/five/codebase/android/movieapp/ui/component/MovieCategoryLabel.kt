@@ -76,10 +76,6 @@ fun selectTextSource(movieCategoryLabelViewState: MovieCategoryLabelViewState): 
     }
 }
 
-fun onMovieCategoryLabelClick(){
-
-}
-
 @Preview
 @Composable
 fun MovieCategoryLabelPreview(){
@@ -89,8 +85,8 @@ fun MovieCategoryLabelPreview(){
     val categoryViewState2 = MovieCategoryLabelViewState(1, false, inputText)
     Row{
         MovieCategoryLabel(movieCategoryLabelViewState = categoryViewState1,
-            { onMovieCategoryLabelClick() })
+            {  })
         MovieCategoryLabel(movieCategoryLabelViewState = categoryViewState2,
-            { onMovieCategoryLabelClick() })
+            {  })
     }
 }

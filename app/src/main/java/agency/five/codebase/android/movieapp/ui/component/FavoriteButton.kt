@@ -6,7 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -29,22 +29,13 @@ fun FavoriteButton(
             .size(dimensionResource(id = R.dimen.favorite_button_size))
             .clip(CircleShape)
             .padding(dimensionResource(id = R.dimen.small_spacing))
-            .clickable {
-                //!isFavorite
-                onClick(isFavorite)
-                //onClick()={!isFavorite} I get an error saying I can't change val parameters
-            }
+            .clickable(onClick = onClick)
     )
-}
-
-fun onClick(isFavorite: Boolean) {
-    !isFavorite
 }
 
 @Preview
 @Composable
 private fun FavoriteButtonPreview(){
-    FavoriteButton(isFavorite = false, onClick = { /*TODO*/ })
+    var isFavorite by remember { mutableStateOf(false) }
+    FavoriteButton(isFavorite = isFavorite, onClick = { !isFavorite })
 }
-
-

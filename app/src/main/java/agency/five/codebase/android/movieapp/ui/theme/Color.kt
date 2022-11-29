@@ -13,5 +13,6 @@ val Gray600 = Color(0xFF979797)
 val Gray700 = Color(0xFF818181)
 val Gray900 = Color(0xFF212121)
 
+val GrayText =Color(0xFF828282)
 val GreenProgressBar = Color(0xFF1CAD66)
 val GreenProgressBarBackground = Color(0xFF9BE2AD)

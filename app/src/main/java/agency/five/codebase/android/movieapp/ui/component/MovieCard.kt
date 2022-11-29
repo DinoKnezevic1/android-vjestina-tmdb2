@@ -28,12 +28,11 @@ data class MovieCardViewState(
 fun MovieCard(
     modifier: Modifier = Modifier,
     movieCardViewState: MovieCardViewState,
-    onFavoriteButtonClicked: () -> Unit,
     onClick: () -> Unit
 ) {
     Card(
         modifier=modifier
-            .clickable { onClick() },
+            .clickable(onClick = onClick),
         elevation = dimensionResource(id = R.dimen.elevation)
     ) {
         Box(
@@ -46,7 +45,7 @@ fun MovieCard(
             )
             FavoriteButton(
                 isFavorite = movieCardViewState.isFavorite,
-                onClick = { onFavoriteButtonClicked },
+                onClick = {  },
                 modifier
                     .padding(MaterialTheme.spacing.small)
             )
@@ -66,12 +65,6 @@ private fun MovieCardPreview() {
             .width(125.dp)
             .height(205.dp)
             .padding(10.dp),
-        onClick = { },
-        onFavoriteButtonClicked = { }
+        onClick = { }
     )
 }
-
-//should I add it in manifest?
-//2022-11-23 18:23:13.221 18848-18917/agency.five.codebase.android.movieapp E/AndroidRuntime: FATAL EXCEPTION: OkHttp Dispatcher
-//    Process: agency.five.codebase.android.movieapp, PID: 18848
-//    java.lang.SecurityException: Permission denied (missing INTERNET permission?)
