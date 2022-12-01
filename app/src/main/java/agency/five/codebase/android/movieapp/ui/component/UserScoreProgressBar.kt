@@ -24,7 +24,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
-private const val animationDuration = 650
+private const val ANIMATION_DURATION = 650
+private const val START_ANGLE = -90f
+private const val SWEEP_ANGLE = 360f
+private const val SCORE_MULTIPLIER = 10
 
 @Composable
 fun CircularProgressBar(
@@ -35,7 +38,7 @@ fun CircularProgressBar(
     val currentPercentage = animateFloatAsState(
         targetValue = (if (animationPlayed.value) score.toFloat() else 0f),
         animationSpec = tween(
-            durationMillis = animationDuration
+            durationMillis = ANIMATION_DURATION
         )
     )
 
@@ -54,22 +57,22 @@ fun CircularProgressBar(
                 .size(60.dp)
         ) {
             drawArc(
-                startAngle = -90f,
-                sweepAngle = 360f,
+                startAngle = START_ANGLE,
+                sweepAngle = SWEEP_ANGLE,
                 color = GreenProgressBarBackground,
                 useCenter = false,
                 style = Stroke(5.dp.toPx(), cap = StrokeCap.Round)
             )
             drawArc(
-                startAngle = -90f,
-                sweepAngle = 360 * currentPercentage.value,
+                startAngle = START_ANGLE,
+                sweepAngle = SWEEP_ANGLE * currentPercentage.value,
                 color = GreenProgressBar,
                 useCenter = false,
                 style = Stroke(5.dp.toPx(), cap = StrokeCap.Round)
             )
         }
         Text(
-            text = (score * 10).toString(),
+            text = (score * SCORE_MULTIPLIER).toString(),
             fontSize = 15.sp,
             color = Color.Black
         )
@@ -79,5 +82,5 @@ fun CircularProgressBar(
 @Preview(showBackground = true)
 @Composable
 fun CircularProgressBarPreview() {
-    CircularProgressBar(score = 0.75)
+    CircularProgressBar(score = 0.35)
 }

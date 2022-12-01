@@ -19,7 +19,9 @@ fun CrewItem(
     crewItemViewState: CrewItemViewState,
     modifier: Modifier = Modifier
 ) {
-    Column {
+    Column(
+        modifier = modifier
+    ) {
         Text(
             text = crewItemViewState.name,
             fontSize = 14.sp,
@@ -35,8 +37,8 @@ fun CrewItem(
 
 @Preview
 @Composable
-fun CrewItemPreview(){
+fun CrewItemPreview() {
     val crewman = MoviesMock.getCrewman()
-    val crewItemViewState = CrewItemViewState(crewman.name,crewman.job)
+    val crewItemViewState = CrewItemViewState(crewman.name, crewman.job)
     CrewItem(crewItemViewState)
 }

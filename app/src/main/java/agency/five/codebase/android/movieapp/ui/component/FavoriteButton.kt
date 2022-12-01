@@ -24,7 +24,7 @@ fun FavoriteButton(
     Image(
         painter = painterResource(id = if(isFavorite) R.drawable.favoritefull else R.drawable.favoriteempty),
         contentDescription = "Favorite button",
-        colorFilter = ColorFilter.tint(Color.White),
+        colorFilter = ColorFilter.tint(Color.Black),
         modifier = modifier
             .size(dimensionResource(id = R.dimen.favorite_button_size))
             .clip(CircleShape)
@@ -36,6 +36,6 @@ fun FavoriteButton(
 @Preview
 @Composable
 private fun FavoriteButtonPreview(){
-    var isFavorite by remember { mutableStateOf(false) }
-    FavoriteButton(isFavorite = isFavorite, onClick = { !isFavorite })
+    var isFavorite by remember { mutableStateOf(true) }
+    FavoriteButton(isFavorite = isFavorite, onClick = { isFavorite =!isFavorite})
 }

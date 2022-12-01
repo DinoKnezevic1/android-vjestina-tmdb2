@@ -45,7 +45,7 @@ fun MovieCard(
             )
             FavoriteButton(
                 isFavorite = movieCardViewState.isFavorite,
-                onClick = {  },
+                onClick = { },
                 modifier
                     .padding(MaterialTheme.spacing.small)
             )
