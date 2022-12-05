@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen
+        name="corner_radius"
+        >4.0dp</dimen>
+    <dimen
+        name="actorCardTextWidth"
+        >100.0dp</dimen>
+    <dimen
+        name="elevation"
+        >6.0dp</dimen>
+</resources>
