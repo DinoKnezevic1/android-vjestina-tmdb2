@@ -23,6 +23,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 
 private const val ANIMATION_DURATION = 650
 private const val START_ANGLE = -90f
@@ -32,11 +33,11 @@ private const val SCORE_MULTIPLIER = 10
 @Composable
 fun CircularProgressBar(
     modifier: Modifier = Modifier,
-    score: Double,
+    score: Float,
 ) {
     val animationPlayed = remember { mutableStateOf(false) }
     val currentPercentage = animateFloatAsState(
-        targetValue = (if (animationPlayed.value) score.toFloat() else 0f),
+        targetValue = (if (animationPlayed.value) score else 0f),
         animationSpec = tween(
             durationMillis = ANIMATION_DURATION
         )
@@ -72,9 +73,10 @@ fun CircularProgressBar(
             )
         }
         Text(
-            text = (score * SCORE_MULTIPLIER).toString(),
+            text = String.format("%.0f",(score * SCORE_MULTIPLIER))+"%",
             fontSize = 15.sp,
-            color = Color.Black
+            fontWeight=FontWeight.Bold,
+            color = Color.White
         )
     }
 }
@@ -82,5 +84,5 @@ fun CircularProgressBar(
 @Preview(showBackground = true)
 @Composable
 fun CircularProgressBarPreview() {
-    CircularProgressBar(score = 0.35)
+    CircularProgressBar(score = 0.35f)
 }
