@@ -2,6 +2,7 @@ package agency.five.codebase.android.movieapp.ui.favorites
 
 import agency.five.codebase.android.movieapp.R
 import agency.five.codebase.android.movieapp.mock.MoviesMock
+import agency.five.codebase.android.movieapp.navigation.NavigationItem
 import agency.five.codebase.android.movieapp.ui.component.MovieCard
 import agency.five.codebase.android.movieapp.ui.favorites.mapper.FavoritesMapper
 import agency.five.codebase.android.movieapp.ui.favorites.mapper.FavoritesMapperImpl
@@ -17,6 +18,9 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -29,10 +33,22 @@ private val favoritesScreenMapper: FavoritesMapper = FavoritesMapperImpl()
 val favoritesScreenViewState =
     favoritesScreenMapper.toFavoritesViewState(MoviesMock.getMoviesList())
 
+@Composable
+fun FavoritesRoute(
+    onNavigateToMovieDetails: (String) -> Unit,
+) {
+    val favoritesViewState by remember { mutableStateOf(favoritesScreenViewState) }
+
+    FavoritesScreen(
+        favoritesViewState = favoritesViewState,
+        onNavigateToMovieDetails = onNavigateToMovieDetails
+    )
+}
 
 @Composable
 fun FavoritesScreen(
     favoritesViewState: FavoritesViewState,
+    onNavigateToMovieDetails: (String) -> Unit
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(NUMBER_OF_COLUMNS),
@@ -59,14 +75,24 @@ fun FavoritesScreen(
             favoritesViewState.movies.size,
             key = { movie -> favoritesViewState.movies[movie].movieCardViewState.movieId }
         ) { movie ->
+
+            val movieCardViewState = favoritesViewState.movies[movie].movieCardViewState
+
             MovieCard(
-                movieCardViewState = favoritesViewState.movies[movie].movieCardViewState,
+                movieCardViewState = movieCardViewState,
                 modifier = Modifier
                     .padding(
                         horizontal = MaterialTheme.spacing.extraSmall,
                         vertical = MaterialTheme.spacing.small
                     ),
-                onClick = { }
+                onClick = {
+                    onNavigateToMovieDetails(
+                        NavigationItem.MovieDetailsDestination.createNavigationRoute(
+                            movieCardViewState.movieId
+                        )
+                    )
+                },
+                onFavoriteButtonClicked = { }
             )
         }
     }
@@ -77,7 +103,8 @@ fun FavoritesScreen(
 fun FavoritesScreenPreview() {
     MovieAppTheme {
         FavoritesScreen(
-            favoritesViewState = favoritesScreenViewState
+            favoritesViewState = favoritesScreenViewState,
+            onNavigateToMovieDetails = {}
         )
     }
 }

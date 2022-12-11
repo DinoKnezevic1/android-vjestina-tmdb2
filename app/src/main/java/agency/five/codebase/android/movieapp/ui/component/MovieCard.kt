@@ -26,7 +26,8 @@ data class MovieCardViewState(
 fun MovieCard(
     modifier: Modifier = Modifier,
     movieCardViewState: MovieCardViewState,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onFavoriteButtonClicked:()->Unit
 ) {
     Card(
         modifier=modifier
@@ -44,7 +45,7 @@ fun MovieCard(
         ){
             FavoriteButton(
                 isFavorite = movieCardViewState.isFavorite,
-                onClick = { }
+                onClick = { onFavoriteButtonClicked() }
             )
         }
     }
@@ -62,6 +63,7 @@ private fun MovieCardPreview() {
             .width(125.dp)
             .height(205.dp)
             .padding(MaterialTheme.spacing.small),
-        onClick = { }
+        onClick = { },
+        onFavoriteButtonClicked = {}
     )
 }

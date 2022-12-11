@@ -41,12 +41,12 @@ fun getResourceTextIdFromMovieCategory(
 ): Int {
     return when (movieCategory) {
         MovieCategory.POPULAR_STREAMING -> R.string.streaming
-        MovieCategory.POPULAR_ONTV -> R.string.on_tv
-        MovieCategory.POPULAR_FORRENT -> R.string.for_rent
-        MovieCategory.POPULAR_INTHEATERS -> R.string.in_theaters
-        MovieCategory.NOWPLAYING_MOVIES -> R.string.movies
-        MovieCategory.NOWPLAYING_TV -> R.string.TV
+        MovieCategory.POPULAR_ON_TV -> R.string.on_tv
+        MovieCategory.POPULAR_FOR_RENT -> R.string.for_rent
+        MovieCategory.POPULAR_IN_THEATERS -> R.string.in_theaters
+        MovieCategory.NOW_PLAYING_MOVIES -> R.string.movies
+        MovieCategory.NOW_PLAYING_TV -> R.string.TV
         MovieCategory.UPCOMING_TODAY -> R.string.today
-        MovieCategory.UPCOMING_THISWEEK -> R.string.this_week
+        MovieCategory.UPCOMING_THIS_WEEK -> R.string.this_week
     }
 }
